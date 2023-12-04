@@ -11,7 +11,7 @@ export interface SubmittedTradeData extends TradeData {
   order_id: string | null;
   fulfilledPrice: number | null;
   status: OrderStatus;
-  date: Date;
+  date: Date | string;
 }
 
 export interface TickerData {

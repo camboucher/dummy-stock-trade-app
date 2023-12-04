@@ -1,8 +1,10 @@
 import { useState } from "react";
-// import { Radio, Group } from "@mantine/core";
 
 import { OrderSide, SubmittedTradeData, TradeData } from "../types";
 import { TradeSubmitButton } from "../components/TradeSubmitButton";
+import "../styles/TradeSubmissionForm.css";
+import { OrderFormRadioButtons } from "../components/OrderFormRadioButtons";
+import { FormControl, FormLabel, Input, InputLabel, TextField } from "@mui/material";
 
 const defaultFormData: TradeData = {
   ticker: "",
@@ -18,13 +20,13 @@ interface Props {
 
 export const TradeSubmissionForm = ({
   handleTradeSubmission,
-  // lastSubmittedTrade,
-}: Props) => {
+}: // lastSubmittedTrade,
+Props) => {
   const [formData, updateFormData] = useState(defaultFormData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    updateFormData({ ...formData, [name]: value});
+    updateFormData({ ...formData, [name]: value });
   };
 
   const clearFrom = () => {
@@ -32,51 +34,37 @@ export const TradeSubmissionForm = ({
   };
 
   return (
-    <form id="tradeFormHeader">
-      Trade Form
-      <label>
-        Ticker:{" "}
-        <input
-          type="text"
-          value={formData.ticker}
-          name="ticker"
-          onChange={handleChange}
-        ></input>
-      </label>
-      {/* <Radio.Group
-        name="side"
-        description="Trade Type"
-      >
-        <Group mt="xs" onChange={handleChange}>
-          <Radio size="sm" value={OrderSide.B} label={OrderSide.B} />
-          <Radio value={OrderSide.O} label={OrderSide.O} />
-        </Group>
-      </Radio.Group> */}
-      <div onChange={handleChange}>
-        <label htmlFor={OrderSide.B}>Purchase</label>
-        <input type="radio" name="side" value={OrderSide.B} id="purchase" />
-        <label htmlFor={OrderSide.O}>Sell</label>
-        <input type="radio" name="side" value={OrderSide.O} id="offer" />
+    <FormControl id="trade-form-wrapper">
+      <label className="form-header">Trade Form</label>
+      <div id="form-content-wrapper">
+        <TextField
+        type="text"
+        label="Ticker"
+        value={formData.ticker}
+        name="ticker"
+        onChange={handleChange}
+      ></TextField>
+      <OrderFormRadioButtons handleChange={handleChange} />
+      <TextField
+        type="number"
+        label="Price"
+        value={formData.requestedPrice}
+        name="requestedPrice"
+        onChange={handleChange}
+      ></TextField>
+      <TextField
+        type="number"
+        label="Volume"
+        value={formData.volume}
+        name="volume"
+        onChange={handleChange}
+      ></TextField>
+      <TradeSubmitButton
+        tradeData={formData}
+        clearForm={clearFrom}
+        handleTradeSubmission={handleTradeSubmission}
+      />
       </div>
-      <label>
-        Price:{" "}
-        <input
-          type="number"
-          value={formData.requestedPrice}
-          name="requestedPrice"
-          onChange={handleChange}
-        ></input>
-      </label>
-      <label>
-        Volume:{" "}
-        <input
-          type="number"
-          value={formData.volume}
-          name="volume"
-          onChange={handleChange}
-        ></input>
-      </label>
-      <TradeSubmitButton tradeData={formData} clearForm={clearFrom} handleTradeSubmission={handleTradeSubmission}/>
-    </form>
+    </FormControl>
   );
 };

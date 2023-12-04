@@ -5,15 +5,16 @@ interface Props {
 }
 
 export const SubmittedTrade = ({ trade }: Props) => {
-  
-    const renderOrderData = () => {
-        const properties = Object.keys(trade);
-        const values = Object.values(trade);
-        
-        return properties.map((property, i) => (
-            <div className={property}>{JSON.stringify(values[i])}</div>
-         ));
-    };
+  const renderOrderData = () => {
+    const properties = Object.keys(trade);
+    const values = Object.values(trade);
 
-  return <div className="sumbittedTrade">{renderOrderData()}</div>;
+    return properties.map((property, i) => (
+      <div key={trade.order_id} className={property}>
+        {values[i]}
+      </div>
+    ));
+  };
+
+  return <div className="submittedTrade">{renderOrderData()}</div>;
 };

@@ -1,5 +1,4 @@
-import { Button } from "@mantine/core";
-
+import { Button } from "@mui/material";
 import { SubmittedTradeData, TradeData } from "../types";
 import { submitTrade } from "../utils";
 
@@ -17,7 +16,7 @@ export const TradeSubmitButton = ({ tradeData, clearForm, handleTradeSubmission 
     clearForm();
     };
 
-  return <Button onClick={handleClick}>Submit</Button>;
+  return <Button variant="contained" onClick={handleClick}>Submit</Button>;
 };
 
 // {

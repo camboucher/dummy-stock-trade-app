@@ -12,15 +12,15 @@ export const TickerStats = ({ tickerData }: Props) => {
   return (
     <>
       <header id="tickerHeader">{name}</header>
-      <div className="tickerRow">
+      <div className="tickerCol">
         <div>Low Trade Price</div>
         <div>{lowTradePrice || emptyDataString}</div>
       </div>
-      <div className="tickerRow">
+      <div className="tickerCol">
         <div>High Trade Price</div>
         <div>{highTradePrice || emptyDataString}</div>
       </div>
-      <div className="tickerRow">
+      <div className="tickerCol">
         <div>VWAP</div>
         <div>{vwap || emptyDataString}</div>
       </div>

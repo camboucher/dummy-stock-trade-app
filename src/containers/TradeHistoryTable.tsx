@@ -1,7 +1,7 @@
 import { SubmittedTrade } from "../components/SubmittedTrade";
 
 import { SubmittedTradeData } from "../types";
-
+import "../styles/TradeHistoryTable.css"
 
 const tradeHistoryColTitles = [
   "Ticker",
@@ -18,12 +18,12 @@ interface Props {
 }
 
 export const TradeHistoryTable = ({ trades }: Props) => {
-  const title = <div className="container-header">Trade History</div>;
+  const title = <h1 className="container-header">Trade History</h1>;
 
   const tableHeaderRow = (
-    <div className="tableHeaderRow">
-      {tradeHistoryColTitles.map((title) => <span className="columnTitle">{title}</span>)}
-    </div>
+    <h2 className="tableHeaderRow">
+      {tradeHistoryColTitles.map((title) => <div className="columnTitle">{title}</div>)}
+    </h2>
   );
 
   const rows = trades.map((trade) => (
@@ -31,10 +31,10 @@ export const TradeHistoryTable = ({ trades }: Props) => {
   ));
 
   return (
-    <>
+    <div id="tableWrapper">
       {title}
       {tableHeaderRow}
       {rows}
-    </>
+    </div>
   );
 };

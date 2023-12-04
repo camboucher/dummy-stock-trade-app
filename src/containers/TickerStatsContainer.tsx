@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import { TickerStats } from "../components/TickerStatsComponent";
 import { Dictionary, TickerData } from "../types";
 
@@ -6,7 +7,9 @@ interface Props {
 }
 
 export const TickerStatsContainer = ({tickers}: Props) => {
-    return Object.values(tickers).map((ticker) => {
-        return <TickerStats tickerData={ticker} />
-    })
+    return (
+        <Container>
+            {Object.values(tickers).map((ticker) => <TickerStats tickerData={ticker} />)}
+        </Container>
+        );
 }
