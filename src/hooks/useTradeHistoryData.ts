@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Dictionary,
   OrderStatus,
@@ -7,11 +7,10 @@ import {
   TradeData,
 } from "../types";
 import { tickerDataReducer } from "../utils";
-import { mockTickers } from "../mockData";
 
 export const useTradeHistoryData = () => {
   const [submittedTrades, setSubmittedTrades] = useState<TradeData[]>([]);
-  const [tickers, setTickers] = useState<Dictionary<TickerData>>({...mockTickers});
+  const [tickers, setTickers] = useState<Dictionary<TickerData>>({});
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>(
     SubmissionStatus.NONE
   );

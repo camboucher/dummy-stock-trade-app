@@ -1,4 +1,6 @@
-import { Dictionary, OrderSide, OrderStatus, TickerData } from "./types";
+import { Dictionary, OrderSide, OrderStatus, TickerData, TradeData } from "./types";
+
+const MOCK_TICKER_DATA_ENTRIES = 12;
 
 function generateMockTickerData(numEntries: number): Dictionary<TickerData> {
   const mockStockData: Dictionary<TickerData> = {};
@@ -28,8 +30,7 @@ function generateRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const numEntriesToGenerate = 12;
-export const mockTickers = generateMockTickerData(numEntriesToGenerate);
+export const mockTickers = generateMockTickerData(MOCK_TICKER_DATA_ENTRIES);
 
 export const mockTradeA = {
     order_id: "b64957f2-c60d-47af-83fe-e4b9e9fa288d",
@@ -50,3 +51,20 @@ export const mockTradeB = {
   ticker: "MSFT",
   status: OrderStatus.SUCCESS,
 };
+
+export const generateRandomTrade = (): TradeData => {
+  const randomTicker = Object.keys(mockTickers)[Math.floor(Math.random() * MOCK_TICKER_DATA_ENTRIES)];
+  const randomSide = Math.random() > 0.5 ? OrderSide.B : OrderSide.O;
+  const randomVolume = generateRandomNumber(1, 100);
+  const randomPrice = generateRandomNumber(50, 150);
+
+  return {
+    order_id: generateRandomSymbol(),
+    volume: randomVolume,
+    price: randomPrice,
+    side: randomSide,
+    date: new Date(),
+    ticker: randomTicker,
+    status: OrderStatus.SUCCESS,
+  };
+}
