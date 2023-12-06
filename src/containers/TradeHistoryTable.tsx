@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { SubmittedTrade } from "../components/SubmittedTradeRow";
 
-import { SubmittedTradeData } from "../types";
+import { TradeData } from "../types";
 import "../styles/TradeHistoryTable.css";
 import {
   Paper,
@@ -15,7 +15,7 @@ import { TableHeaderRow } from "../components/TableHeaderRow";
 const ROWS_PER_PAGE = 4;
 
 interface Props {
-  trades: SubmittedTradeData[];
+  trades: TradeData[];
 }
 
 export const TradeHistoryTable = ({ trades }: Props) => {
@@ -47,14 +47,14 @@ export const TradeHistoryTable = ({ trades }: Props) => {
       <Table stickyHeader>
         <TableHeaderRow />
         <TableBody>{rows}</TableBody>
-        <TablePagination
+      </Table>
+      <TablePagination
           onPageChange={handlePageChange}
           count={trades.length}
           page={currPage}
           rowsPerPage={ROWS_PER_PAGE}
           rowsPerPageOptions={[]}
         />
-      </Table>
     </TableContainer>
   );
 };

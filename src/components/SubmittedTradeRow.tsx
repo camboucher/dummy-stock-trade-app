@@ -1,8 +1,8 @@
 import { TableCell, TableRow } from "@mui/material";
-import { SubmittedTradeData } from "../types";
+import { TradeData } from "../types";
 
 interface Props {
-  trade: SubmittedTradeData;
+  trade: TradeData;
 }
 
 const dateFormatOptions: Intl.DateTimeFormatOptions = {
@@ -15,12 +15,12 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
 const locale = "en-us";
 
 export const SubmittedTrade = ({ trade }: Props) => {
-  const { order_id, side, ticker, status, volume, date, fulfilledPrice } =
+  const { order_id, side, ticker, status, volume, date, price } =
     trade;
 
-  const formattedDate = date.toLocaleString(locale, dateFormatOptions);
-  const roundedVolume = volume.toFixed(2);
-  const roundedPrice = fulfilledPrice?.toFixed(2) ?? "-";
+  const formattedDate = date?.toLocaleString(locale, dateFormatOptions);
+  const roundedVolume = volume?.toFixed(2);
+  const roundedPrice = price?.toFixed(2) ?? "-";
 
   return (
     <>

@@ -4,25 +4,26 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   width: 100vw;
   height: 100vh;
 }
 
 #page-title {
-  margin-bottom: 16px;
+  padding: 16px;
 }
 
 #top-row-content-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
   gap: 32px;
-  max-height: 480px;
+  max-height: 510px;
 }
 
 h3, h4{
   color: #4075FF;
 }
+

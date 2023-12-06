@@ -1,17 +1,12 @@
 
-
 export interface TradeData {
+  order_id?: string;
   ticker: string;
   side: OrderSide;
-  requestedPrice: number;
   volume: number;
-}
-
-export interface SubmittedTradeData extends TradeData {
-  order_id: string | null;
-  fulfilledPrice: number | null;
-  status: OrderStatus;
-  date: Date;
+  price: number;
+  date?: Date;
+  status?: OrderStatus;
 }
 
 export interface TickerData {
@@ -22,8 +17,15 @@ export interface TickerData {
     vwap: number;
 }
 
+export enum SubmissionStatus {
+  NONE = "NONE",
+  PENDING = "PENDING",
+  FAILED = "FAILED",
+  SUCCESS = "SUCCESS",
+}
+
 export enum OrderStatus {
-  COMPLETE = "Complete",
+  SUCCESS = "Success",
   PENDING = "Pending",
   FAILED = "Failed",
 }

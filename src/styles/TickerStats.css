@@ -2,6 +2,7 @@
     overflow-y: scroll;
     scroll-behavior: smooth;
     margin: 0 16px;
+    max-height: inherit;
 }
 
 .ticker-row {
