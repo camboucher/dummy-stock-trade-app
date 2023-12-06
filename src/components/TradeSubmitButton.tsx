@@ -16,13 +16,5 @@ export const TradeSubmitButton = ({ tradeData, clearForm, handleTradeSubmission 
     clearForm();
     };
 
-  return <Button variant="contained" onClick={handleClick}>Submit</Button>;
+  return <Button id="submit-button" variant="contained" onClick={handleClick}>Submit</Button>;
 };
-
-// {
-    //     "order_id": "string",
-    //     "ticker": "string",
-    //     "side": "string", 
-    //     "volume": "float",
-    //     "price": "float"
-    //   }

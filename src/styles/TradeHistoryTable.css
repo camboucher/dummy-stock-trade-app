@@ -1,26 +1,24 @@
-h1 {
-    font-size: 1.6rem;
+#trade-history-table {
+    margin-top: 36px;
+    width: 97%;
 }
 
-h2 {
-    font-size: 1.2rem;
+#trade-history-title {
+    text-align: left;
+    background-color: white;
+    align-self: flex-start;
 }
 
-#tableWrapper {
+.order-id-row{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-
-    padding: 0;
-
-    border: 1px solid black;
+    margin-left: 8px;
+    margin-top: 4px;
+    text-align: left;
+    font-style: italic;
+    font-size: 12px;
 }
 
-.tableHeaderRow, .submittedTrade {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+#table-header-row * {
+    font-weight: 600;
 }
 

@@ -2,8 +2,6 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
-  InputLabel,
-  FormLabel,
 } from "@mui/material";
 import { OrderSide } from "../types";
 
@@ -13,16 +11,14 @@ interface Props {
 
 export const OrderFormRadioButtons = ({ handleChange }: Props) => {
   return (
-    <RadioGroup name="side" className="radio-buttons-group" onChange={handleChange}>
-      <FormLabel> Order Side </FormLabel>
-      <div id="rado-button-row-wrapper">
+    <RadioGroup name="side" id="radio-button-group" onChange={handleChange} defaultValue={OrderSide.B}>
         <FormControlLabel value={OrderSide.B} control={<Radio />} label="Buy" />
         <FormControlLabel
           value={OrderSide.O}
           control={<Radio />}
           label="Offer"
+          defaultChecked={true}
         />
-      </div>
     </RadioGroup>
   );
 };

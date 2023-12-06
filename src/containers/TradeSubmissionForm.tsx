@@ -4,7 +4,7 @@ import { OrderSide, SubmittedTradeData, TradeData } from "../types";
 import { TradeSubmitButton } from "../components/TradeSubmitButton";
 import "../styles/TradeSubmissionForm.css";
 import { OrderFormRadioButtons } from "../components/OrderFormRadioButtons";
-import { FormControl, FormLabel, Input, InputLabel, TextField } from "@mui/material";
+import { FormControl, FormLabel, Input, InputLabel, Paper, TextField } from "@mui/material";
 
 const defaultFormData: TradeData = {
   ticker: "",
@@ -34,37 +34,41 @@ Props) => {
   };
 
   return (
-    <FormControl id="trade-form-wrapper">
-      <label className="form-header">Trade Form</label>
-      <div id="form-content-wrapper">
+    <FormControl id="trade-form-container" component={Paper}>
+      <h3>Trade Submission Form</h3>
         <TextField
         type="text"
         label="Ticker"
         value={formData.ticker}
+        inputProps={{maxLength: 4}}
         name="ticker"
         onChange={handleChange}
+        required
       ></TextField>
-      <OrderFormRadioButtons handleChange={handleChange} />
       <TextField
         type="number"
         label="Price"
         value={formData.requestedPrice}
+        inputProps={{min: 0}}
         name="requestedPrice"
         onChange={handleChange}
+        required
       ></TextField>
       <TextField
         type="number"
         label="Volume"
         value={formData.volume}
+        inputProps={{min: 0}}
         name="volume"
         onChange={handleChange}
+        required
       ></TextField>
+       <OrderFormRadioButtons handleChange={handleChange} />
       <TradeSubmitButton
         tradeData={formData}
         clearForm={clearFrom}
         handleTradeSubmission={handleTradeSubmission}
       />
-      </div>
     </FormControl>
   );
 };

@@ -1,40 +1,60 @@
-import { SubmittedTrade } from "../components/SubmittedTrade";
+import { useState, useMemo } from "react";
+import { SubmittedTrade } from "../components/SubmittedTradeRow";
 
 import { SubmittedTradeData } from "../types";
-import "../styles/TradeHistoryTable.css"
+import "../styles/TradeHistoryTable.css";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableContainer,
+  TablePagination,
+} from "@mui/material";
+import { TableHeaderRow } from "../components/TableHeaderRow";
 
-const tradeHistoryColTitles = [
-  "Ticker",
-  "Fulfilled Price",
-  "Requested Price",
-  "Volume",
-  "Status",
-  "Date",
-  "Order Id",
-];
+const ROWS_PER_PAGE = 4;
 
 interface Props {
   trades: SubmittedTradeData[];
 }
 
 export const TradeHistoryTable = ({ trades }: Props) => {
-  const title = <h1 className="container-header">Trade History</h1>;
+  const [currPage, setPage] = useState(0);
+  
+  const handlePageChange = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    pageNumber: number
+  ) => {
+    e?.preventDefault();
+    setPage(pageNumber);
+  };
 
-  const tableHeaderRow = (
-    <h2 className="tableHeaderRow">
-      {tradeHistoryColTitles.map((title) => <div className="columnTitle">{title}</div>)}
-    </h2>
+  const currPageTrades = useMemo(
+    () =>
+      trades.slice(currPage * ROWS_PER_PAGE, (currPage + 1) * ROWS_PER_PAGE),
+    [currPage, trades.length]
   );
 
-  const rows = trades.map((trade) => (
-    <SubmittedTrade trade={trade}></SubmittedTrade>
+  const title = <h3 id="trade-history-title">Trade History</h3>;
+
+  const rows = currPageTrades.map((trade) => (
+    <SubmittedTrade key={trade.order_id} trade={trade}></SubmittedTrade>
   ));
 
   return (
-    <div id="tableWrapper">
+    <TableContainer id="trade-history-table" component={Paper}>
       {title}
-      {tableHeaderRow}
-      {rows}
-    </div>
+      <Table stickyHeader>
+        <TableHeaderRow />
+        <TableBody>{rows}</TableBody>
+        <TablePagination
+          onPageChange={handlePageChange}
+          count={trades.length}
+          page={currPage}
+          rowsPerPage={ROWS_PER_PAGE}
+          rowsPerPageOptions={[]}
+        />
+      </Table>
+    </TableContainer>
   );
 };

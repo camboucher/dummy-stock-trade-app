@@ -1,0 +1,16 @@
+#ticker-stats-container {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    margin: 0 16px;
+}
+
+.ticker-row {
+    display: flex;
+    flex-direction: row;
+    padding: 6px 12px;
+}
+
+h3 {
+    display: flex;
+    padding: 0 12px;
+}

@@ -1,29 +1,41 @@
-import { TickerData } from "../types";
-
+import { Card, CardContent } from "@mui/material";
+import { TickerData, TickerDataRowNames } from "../types";
+import "../styles/TickerStats.css";
 interface Props {
   tickerData: TickerData;
 }
 
-export const TickerStats = ({ tickerData }: Props) => {
-  const emptyDataString = "-";
+interface RowProps {
+  rowName: string,
+  rowData: number | string;
+}
 
+export const emptyDataString = "-";
+
+const TickerStatRow = ({rowName, rowData}: RowProps) => {
+  return (
+    <div className="ticker-row">
+      <div className="row-title">{rowName}</div>
+      &nbsp;
+      <div className="row-data">{rowData ?? emptyDataString}</div>
+    </div>
+  );
+};
+
+export const TickerStats = ({ tickerData }: Props) => {
+  
   const { name, highTradePrice, lowTradePrice, vwap } = tickerData;
 
   return (
-    <>
-      <header id="tickerHeader">{name}</header>
-      <div className="tickerCol">
-        <div>Low Trade Price</div>
-        <div>{lowTradePrice || emptyDataString}</div>
-      </div>
-      <div className="tickerCol">
-        <div>High Trade Price</div>
-        <div>{highTradePrice || emptyDataString}</div>
-      </div>
-      <div className="tickerCol">
-        <div>VWAP</div>
-        <div>{vwap || emptyDataString}</div>
-      </div>
-    </>
+    <Card>
+      <CardContent>
+      <h3 id="ticker-header">
+        {name}
+      </h3>
+      <TickerStatRow rowName={TickerDataRowNames.LOW_TRADE_PRICE} rowData={lowTradePrice?.toFixed(2)}/>
+      <TickerStatRow rowName={TickerDataRowNames.LOW_TRADE_PRICE} rowData={highTradePrice?.toFixed(2)}/>
+      <TickerStatRow rowName={TickerDataRowNames.VWAP} rowData={vwap}/>
+     </CardContent>
+    </Card>
   );
 };

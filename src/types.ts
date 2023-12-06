@@ -11,7 +11,7 @@ export interface SubmittedTradeData extends TradeData {
   order_id: string | null;
   fulfilledPrice: number | null;
   status: OrderStatus;
-  date: Date | string;
+  date: Date;
 }
 
 export interface TickerData {
@@ -35,4 +35,10 @@ export enum OrderSide {
 
 export interface Dictionary<T> {
   [Key: string]: T;
+}
+
+export enum TickerDataRowNames {
+  LOW_TRADE_PRICE="Low Trade Price: ",
+  HIGH_TRADE_PRICE = "High Trade Price: ",
+  VWAP = "VWAP: "
 }
