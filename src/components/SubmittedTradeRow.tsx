@@ -19,18 +19,17 @@ export const SubmittedTrade = ({ trade }: Props) => {
     trade;
 
   const formattedDate = date?.toLocaleString(locale, dateFormatOptions);
-  const roundedVolume = volume?.toFixed(2);
-  const roundedPrice = price?.toFixed(2) ?? "-";
+  const roundedVolume = typeof volume === 'number' ? volume?.toFixed(2) : "-";
+  const roundedPrice = typeof price === 'number' ? price?.toFixed(2) : "-";
 
   return (
-    <>
       <TableRow
         key={order_id}
         className="submitted-trade-row"
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
         <TableCell component="th" scope="row">
-          {ticker}
+          {ticker ?? "-"}
         </TableCell>
         <TableCell align="left">{side}</TableCell>
         <TableCell align="left">{roundedPrice}</TableCell>
@@ -38,9 +37,8 @@ export const SubmittedTrade = ({ trade }: Props) => {
         <TableCell align="left">{status}</TableCell>
         <TableCell align="left">{formattedDate}</TableCell>
         <TableCell align="left" className="order-id">
-          {order_id}
+          {order_id ?? '-'}
         </TableCell>
       </TableRow>
-    </>
   );
 };

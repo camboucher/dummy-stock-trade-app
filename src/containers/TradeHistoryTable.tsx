@@ -8,6 +8,7 @@ import {
   Table,
   TableBody,
   TableContainer,
+  TableFooter,
   TablePagination,
 } from "@mui/material";
 import { TableHeaderRow } from "../components/TableHeaderRow";
@@ -20,7 +21,7 @@ interface Props {
 
 export const TradeHistoryTable = ({ trades }: Props) => {
   const [currPage, setPage] = useState(0);
-  
+
   const handlePageChange = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     pageNumber: number
@@ -37,24 +38,26 @@ export const TradeHistoryTable = ({ trades }: Props) => {
 
   const title = <h3 id="trade-history-title">Trade History</h3>;
 
-  const rows = currPageTrades.map((trade) => (
-    <SubmittedTrade key={trade.order_id} trade={trade}></SubmittedTrade>
+  const rows = currPageTrades.map((trade, i) => (
+    <SubmittedTrade key={i} trade={trade}></SubmittedTrade>
   ));
 
   return (
     <TableContainer id="trade-history-table" component={Paper}>
-      {title}
+
       <Table stickyHeader>
         <TableHeaderRow />
         <TableBody>{rows}</TableBody>
+        <TableFooter>
+          <TablePagination
+            onPageChange={handlePageChange}
+            count={trades.length}
+            page={currPage}
+            rowsPerPage={ROWS_PER_PAGE}
+            rowsPerPageOptions={[]}
+          />
+        </TableFooter>
       </Table>
-      <TablePagination
-          onPageChange={handlePageChange}
-          count={trades.length}
-          page={currPage}
-          rowsPerPage={ROWS_PER_PAGE}
-          rowsPerPageOptions={[]}
-        />
     </TableContainer>
   );
 };

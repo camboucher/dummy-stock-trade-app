@@ -31,7 +31,7 @@ export const TradeSubmissionForm = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    if (name === "volume" || name === "price") {
+    if (!isNaN(parseFloat(value))) {
       updateFormData({ ...formData, [name]: parseFloat(value) });
     } else {
       updateFormData({ ...formData, [name]: value });

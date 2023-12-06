@@ -13,9 +13,7 @@ export const submitTrade = async (
     method,
     body: JSON.stringify(tradeData),
   })
-    .catch((error) => {
-      console.log("error", error);
-    })
+    
     .then((response) => response?.json())
     .then((response) => {
       const { order_id, volume, price, side, ticker, error } = response;
@@ -32,8 +30,10 @@ export const submitTrade = async (
           status: OrderStatus.SUCCESS,
         });
       }
-    });
-};
+    })
+    .catch((error) => {
+      console.log("error", error);
+    })};
 
 export const tickerDataReducer = (
   successfulTrade: TradeData,

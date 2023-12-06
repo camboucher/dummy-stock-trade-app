@@ -17,8 +17,8 @@ export const TickerStatsContainer = ({ tickers }: Props) => {
       >
         <Grid xs={12}><h3>Daily Stock Data</h3></Grid>
         {Object.values(tickers).map((ticker, i) => (
-          <Grid minWidth="fit-content" xs={12} md={6} lg={4}>
-            <TickerStats key={i + '-' + ticker.name} tickerData={ticker} />
+          <Grid key={i} minWidth="fit-content" xs={12} md={6} lg={4}>
+            <TickerStats tickerData={ticker} />
           </Grid>
         ))}
       </Grid>
