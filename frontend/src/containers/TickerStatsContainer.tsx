@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Unstable_Grid2";
 import { TickerStats } from "../components/TickerStatsComponent";
 import { Dictionary, TickerData } from "../types";
-import { Card, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 
 interface Props {
   tickers: Dictionary<TickerData>;

@@ -1,29 +1,32 @@
 import { OrderStatus, TickerData, TradeData } from "./types";
 
-const apiHost = "127:0.0.1:5000";
-
 export const fetchTradeData = async (
 ) => {
-  const url =
-    `${apiHost}/trade-data`;
+  const route =
+  "http://localhost:5000/trade-data";
   const method = "GET";
 
-  return fetch(url, { method })
+  return fetch(route, { method })
     .then((response) => response?.json())
-    .then((response) => {console.log(response, "SUCCESS")})
+    .then((data) => {
+      console.log(data, "SUCCESS")
+      return data
+    })
     .catch((error) => {
       console.log("error", error);
     });
 }
 
 export const fetchTickerData = async () => {
-  const url =
-    `${apiHost}/ticker-data`;
+  const route = "http://localhost:5000/stock-data";
   const method = "GET";
 
-  return fetch(url, { method })
+  return fetch(route, { method })
     .then((response) => response?.json())
-    .then((response) => {console.log(response)})
+    .then((data) => {
+      console.log(data)
+      return data
+    })
     .catch((error) => {
       console.log("error", error);
     });
@@ -34,12 +37,15 @@ export const submitTrade = async (
   successCb: (successfulTrade: TradeData) => void,
   failureCb: (failedTrade: TradeData) => void
 ) => {
-  const url =
-    `${apiHost}/trade-data`;
+  const route =
+    "http://localhost:5000/trade-data";
   const method = "POST";
 
-  return fetch(url, {
+  return fetch(route, {
     method,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(tradeData),
   })
     

@@ -1,6 +1,6 @@
 from flask import Flask, request
-import flask_cors
-from api.mock_data import in_memory_datastore
+from flask_cors import CORS
+from mock_data import in_memory_datastore
 from utils import create_trade
 
 app = Flask(__name__)

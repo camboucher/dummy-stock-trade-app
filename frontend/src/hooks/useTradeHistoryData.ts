@@ -15,11 +15,6 @@ export const useTradeHistoryData = () => {
     SubmissionStatus.NONE
   );
 
-  useEffect(() => {
-    fetchTickerData()
-    fetchTradeData()
-  }, []);
-
   const handleTradeSubmission = () => {
     setSubmissionStatus(SubmissionStatus.PENDING);
   };
@@ -62,6 +57,19 @@ export const useTradeHistoryData = () => {
     }
     setTickers({ ...tickers, [ticker]: newTickerData });
   };
+
+  useEffect(() => {
+    fetchTickerData().then((data) => {
+      if (data) {
+        setTickers(data);
+      }
+    });
+    fetchTradeData().then((data) => {
+      if (data) {
+        setSubmittedTrades(data);
+      }
+    });
+  }, []);
 
   return {
     submittedTrades,

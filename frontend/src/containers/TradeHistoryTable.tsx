@@ -36,7 +36,7 @@ export const TradeHistoryTable = ({ trades }: Props) => {
     [currPage, trades.length]
   );
 
-  const title = <h3 id="trade-history-title">Trade History</h3>;
+  // const title = <h3 id="trade-history-title">Trade History</h3>;
 
   const rows = currPageTrades.map((trade, i) => (
     <SubmittedTrade key={i} trade={trade}></SubmittedTrade>
