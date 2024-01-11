@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dictionary,
   OrderStatus,
@@ -6,7 +6,7 @@ import {
   TickerData,
   TradeData,
 } from "../types";
-import { tickerDataReducer } from "../utils";
+import { fetchTickerData, fetchTradeData, tickerDataReducer } from "../utils";
 
 export const useTradeHistoryData = () => {
   const [submittedTrades, setSubmittedTrades] = useState<TradeData[]>([]);
@@ -14,6 +14,11 @@ export const useTradeHistoryData = () => {
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>(
     SubmissionStatus.NONE
   );
+
+  useEffect(() => {
+    fetchTickerData()
+    fetchTradeData()
+  }, []);
 
   const handleTradeSubmission = () => {
     setSubmissionStatus(SubmissionStatus.PENDING);

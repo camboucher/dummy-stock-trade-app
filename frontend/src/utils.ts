@@ -1,12 +1,41 @@
 import { OrderStatus, TickerData, TradeData } from "./types";
 
+const apiHost = "127:0.0.1:5000";
+
+export const fetchTradeData = async (
+) => {
+  const url =
+    `${apiHost}/trade-data`;
+  const method = "GET";
+
+  return fetch(url, { method })
+    .then((response) => response?.json())
+    .then((response) => {console.log(response, "SUCCESS")})
+    .catch((error) => {
+      console.log("error", error);
+    });
+}
+
+export const fetchTickerData = async () => {
+  const url =
+    `${apiHost}/ticker-data`;
+  const method = "GET";
+
+  return fetch(url, { method })
+    .then((response) => response?.json())
+    .then((response) => {console.log(response)})
+    .catch((error) => {
+      console.log("error", error);
+    });
+}
+
 export const submitTrade = async (
   tradeData: TradeData,
   successCb: (successfulTrade: TradeData) => void,
   failureCb: (failedTrade: TradeData) => void
 ) => {
   const url =
-    "https://us-east-1.aws.data.mongodb-api.com/app/test-exchange-fvgfh/endpoint/orders";
+    `${apiHost}/trade-data`;
   const method = "POST";
 
   return fetch(url, {
