@@ -1,5 +1,6 @@
-# ModernFi Take Home
+# Dummy Stock Trading App
 
+This project is a basic react frontend that I built to to interface with a Python - Flask API to learn the framework.
 This project was bootstrapped with [Vite](https://vitejs.dev/), a fast React development environment.
 
 ## Prerequisites
